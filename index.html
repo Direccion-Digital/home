@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dirección Digital | Soluciones audiovisuales para tu proyecto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-principal: #6BAB90;
+            --verde-claro: #8BC4A9;
+            --verde-oscuro: #4A8B70;
+            --gris-oscuro: #2D3748;
+            --gris-medio: #4A5568;
+            --gris-claro: #718096;
+            --blanco: #FFFFFF;
+            --fondo: #F7FAFC;
+            --fondo-oscuro: #1A202C;
+            --acento: #E2E8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--fondo);
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(107, 171, 144, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--gris-oscuro);
+        }
+
+        .logo-text span {
+            color: var(--verde-principal);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gris-medio);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--verde-principal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--verde-principal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--verde-principal);
+            color: var(--blanco);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 171, 144, 0.3);
+        }
+
+        .nav-cta:hover {
+            background: var(--verde-oscuro);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 171, 144, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--gris-oscuro);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--fondo) 0%, #EDF2F7 100%);
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--verde-principal);
+            top: -200px;
+            right: -100px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gris-oscuro);
+            bottom: -100px;
+            left: -100px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--verde-claro);
+            top: 50%;
+            left: 30%;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            color: var(--verde-oscuro);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--gris-oscuro);
+        }
+
+        .hero h1 span {
+            color: var(--verde-principal);
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--gris-medio);
+            margin-bottom: 1rem;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .hero-subtext {
+            font-size: 0.95rem;
+            color: var(--gris-claro);
+            margin-bottom: 2.5rem;
+            max-width: 480px;
+            font-style: italic;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--verde-principal);
+            color: var(--blanco);
+            box-shadow: 0 4px 20px rgba(107, 171, 144, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--verde-oscuro);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(107, 171, 144, 0.5);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--blanco);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebe5d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gris-oscuro);
+            border: 2px solid var(--acento);
+            padding: 0.9rem 1.8rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--verde-principal);
+            color: var(--verde-principal);
+        }
+
+        .hero-trust {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--acento);
+        }
+
+        .hero-trust p {
+            font-size: 0.85rem;
+            color: var(--gris-claro);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-trust-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gris-medio);
+        }
+
+        .trust-item svg {
+            width: 20px;
+            height: 20px;
+            color: var(--verde-principal);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-card {
+            background: var(--blanco);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px rgba(45, 55, 72, 0.1);
+            border: 1px solid rgba(107, 171, 144, 0.1);
+        }
+
+        .hero-card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-card-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-card-header p {
+            font-size: 0.9rem;
+            color: var(--gris-claro);
+        }
+
+        .hero-services-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .preview-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--fondo);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .preview-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(107, 171, 144, 0.1);
+        }
+
+        .preview-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .preview-text h4 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.15rem;
+        }
+
+        .preview-text p {
+            font-size: 0.8rem;
+            color: var(--gris-claro);
+        }
+
+        /* ===== QUIÉNES SOMOS ===== */
+        .about {
+            padding: 8rem 2rem;
+            background: var(--blanco);
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(107, 171, 144, 0.1);
+            color: var(--verde-principal);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--gris-oscuro);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gris-medio);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .about-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            color: var(--gris-medio);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .about-text .highlight {
+            color: var(--verde-oscuro);
+            font-weight: 500;
+        }
+
+        .about-pillars {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .pillar {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--fondo);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .pillar:hover {
+            border-color: rgba(107, 171, 144, 0.2);
+            box-shadow: 0 5px 20px rgba(107, 171, 144, 0.1);
+        }
+
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--verde-principal);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .pillar-content h4 {
+            font-weight: 600;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.25rem;
+        }
+
+        .pillar-content p {
+            font-size: 0.9rem;
+            color: var(--gris-claro);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-oscuro));
+            border-radius: 24px;
+            padding: 2.5rem;
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .about-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            font-size: 1rem;
+            opacity: 0.95;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card-list {
+            list-style: none;
+        }
+
+        .about-card-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .about-card-list li:last-child {
+            border-bottom: none;
+        }
+
+        .about-card-list li::before {
+            content: '→';
+            opacity: 0.7;
+        }
+
+        /* ===== SERVICIOS ===== */
+        .services {
+            padding: 8rem 2rem;
+            background: var(--fondo);
+        }
+
+        .services-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .services-intro p {
+            color: var(--gris-medio);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 2.25rem;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--verde-principal), var(--verde-claro));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(107, 171, 144, 0.12);
+            border-color: rgba(107, 171, 144, 0.15);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(107, 171, 144, 0.1), rgba(107, 171, 144, 0.2));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card > p {
+            color: var(--gris-medio);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.4rem 0;
+            color: var(--gris-medio);
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--verde-principal);
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        /* ===== FOODOS ===== */
+        .foodos {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--gris-oscuro) 0%, var(--fondo-oscuro) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .foodos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236BAB90' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .foodos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .foodos-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .foodos-text {
+            color: var(--blanco);
+        }
+
+        .foodos-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(107, 171, 144, 0.2);
+            color: var(--verde-claro);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(107, 171, 144, 0.3);
+        }
+
+        .foodos-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .foodos-text h2 span {
+            color: var(--verde-principal);
+        }
+
+        .foodos-text > p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .foodos-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .foodos-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .foodos-feature-icon {
+            font-size: 1.3rem;
+        }
+
+        .foodos-feature span {
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .foodos-visual {
+            position: relative;
+        }
+
+        .foodos-mockup {
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-oscuro));
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .mockup-header {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .mockup-content {
+            background: var(--blanco);
+            border-radius: 14px;
+            padding: 1.25rem;
+        }
+
+        .mockup-item {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.9rem;
+            background: var(--fondo);
+            border-radius: 10px;
+            margin-bottom: 0.6rem;
+        }
+
+        .mockup-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .mockup-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--verde-principal);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanco);
+            font-size: 1rem;
+        }
+
+        .mockup-text {
+            flex: 1;
+        }
+
+        .mockup-text h5 {
+            font-weight: 600;
+            color: var(--gris-oscuro);
+            font-size: 0.85rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .mockup-text p {
+            font-size: 0.72rem;
+            color: var(--gris-claro);
+            margin: 0;
+        }
+
+        .mockup-status {
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+
+        .status-complete { background: #C6F6D5; color: #22543D; }
+        .status-progress { background: #FEF3C7; color: #92400E; }
+        .status-pending { background: #E2E8F0; color: #4A5568; }
+
+        /* ===== CLIENTE ===== */
+        .client {
+            padding: 6rem 2rem;
+            background: var(--blanco);
+        }
+
+        .client-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .client-card {
+            background: var(--fondo);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .client-quote {
+            font-size: 4rem;
+            color: var(--verde-principal);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .client-text {
+            font-size: 1.2rem;
+            color: var(--gris-medio);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .client-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .client-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-claro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--blanco);
+        }
+
+        .client-name h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.25rem;
+        }
+
+        .client-name p {
+            color: var(--gris-claro);
+            font-size: 0.95rem;
+        }
+
+        .client-cta {
+            margin-top: 2rem;
+        }
+
+        .btn-client {
+            background: var(--verde-principal);
+            color: var(--blanco);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 171, 144, 0.3);
+        }
+
+        .btn-client:hover {
+            background: var(--verde-oscuro);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 171, 144, 0.4);
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: 8rem 2rem;
+            background: var(--fondo);
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--blanco);
+            border-radius: 14px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--acento);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gris-oscuro);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--verde-principal);
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--fondo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            background: var(--verde-principal);
+            color: var(--blanco);
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--gris-medio);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CONTACTO ===== */
+        .contact {
+            padding: 8rem 2rem;
+            background: var(--blanco);
+        }
+
+        .contact-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-intro h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--gris-oscuro);
+            margin-bottom: 1rem;
+        }
+
+        .contact-intro p {
+            color: var(--gris-medio);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: var(--fondo);
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-option:hover {
+            border-color: var(--verde-principal);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(107, 171, 144, 0.15);
+        }
+
+        .contact-option.whatsapp:hover {
+            border-color: #25D366;
+        }
+
+        .contact-option-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-option-icon.green {
+            background: var(--verde-principal);
+        }
+
+        .contact-option-icon.whatsapp {
+            background: #25D366;
+        }
+
+        .contact-option-icon.email {
+            background: var(--gris-oscuro);
+        }
+
+        .contact-option-text h4 {
+            font-weight: 600;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.25rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-option-text p {
+            font-size: 0.88rem;
+            color: var(--gris-claro);
+        }
+
+        .contact-form-wrapper {
+            background: var(--fondo);
+            border-radius: 20px;
+            padding: 2.25rem;
+        }
+
+        .contact-form-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-header p {
+            font-size: 0.9rem;
+            color: var(--gris-claro);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--gris-oscuro);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.9rem 1.1rem;
+            border: 2px solid var(--acento);
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: var(--blanco);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--verde-principal);
+            box-shadow: 0 0 0 4px rgba(107, 171, 144, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit {
+            margin-top: 0.5rem;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1rem 2rem;
+        }
+
+        /* Success message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        .form-success-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--verde-principal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1rem;
+        }
+
+        .form-success h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-success p {
+            color: var(--gris-medio);
+            font-size: 0.95rem;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .final-cta {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-oscuro));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--blanco);
+        }
+
+        .final-cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .final-cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .final-cta .btn-light {
+            background: var(--blanco);
+            color: var(--verde-oscuro);
+        }
+
+        .final-cta .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .final-cta .btn-outline {
+            background: transparent;
+            color: var(--blanco);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .final-cta .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--blanco);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--fondo-oscuro);
+            color: var(--blanco);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand .logo-text {
+            color: var(--blanco);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--verde-principal);
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .about-content-wrapper,
+            .foodos-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .foodos-features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .final-cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-trust-icons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10C67.5 10 82 24.5 82 42V58C82 75.5 67.5 90 50 90" stroke="#2D3748" stroke-width="12" stroke-linecap="round"/>
+                    <path d="M50 42L50 30L40 40L50 50L60 40L50 30" fill="#2D3748"/>
+                    <path d="M25 55C25 55 18 62 18 72C18 82 25 88 35 88" stroke="#6BAB90" stroke-width="8" stroke-linecap="round"/>
+                    <path d="M35 60C35 60 28 67 28 75C28 83 35 88 42 88" stroke="#8BC4A9" stroke-width="6" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">Dirección <span>Digital</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#foodos">FoodOS</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#contacto" class="nav-cta">Conversemos</a>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-eyebrow">Soluciones audiovisuales para tu proyecto</span>
+                <h1>Dale <span>dirección</span> a tus ideas</h1>
+                <p class="hero-description">
+                    Transformamos lo que tienes en la cabeza en algo que la gente pueda ver, escuchar y sentir. 
+                    No somos una agencia de marketing más — somos el equipo creativo que tu proyecto necesita.
+                </p>
+                <p class="hero-subtext">
+                    Cada proyecto tiene una historia. Nosotros te ayudamos a contarla.
+                </p>
+                <div class="hero-ctas">
+                    <a href="https://wa.me/528110681138?text=Hola%2C%20estoy%20interesado%20en%20darle%20una%20direcci%C3%B3n%20digital%20a%20mi%20proyecto." class="btn btn-whatsapp" target="_blank">
+                        💬 Escríbenos por WhatsApp
+                    </a>
+                    <a href="#contacto" class="btn btn-secondary">
+                        Cuéntanos tu idea
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <p>Trabajamos con proyectos de todo tipo:</p>
+                    <div class="hero-trust-icons">
+                        <span class="trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            Emprendedores
+                        </span>
+                        <span class="trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            Empresas
+                        </span>
+                        <span class="trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/></svg>
+                            Creadores de contenido
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <h3>¿Qué necesitas?</h3>
+                        <p>Exploremos juntos las posibilidades</p>
+                    </div>
+                    <div class="hero-services-preview">
+                        <div class="preview-item">
+                            <div class="preview-icon">🎬</div>
+                            <div class="preview-text">
+                                <h4>Producción audiovisual</h4>
+                                <p>Videos, cursos, streaming</p>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-icon">🎓</div>
+                            <div class="preview-text">
+                                <h4>Plataformas educativas</h4>
+                                <p>Tu conocimiento en línea</p>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-icon">🚀</div>
+                            <div class="preview-text">
+                                <h4>Presencia digital</h4>
+                                <p>Que te vean, que te encuentren</p>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-icon">💡</div>
+                            <div class="preview-text">
+                                <h4>Consultoría especializada</h4>
+                                <p>Orientación para tu industria</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIÉNES SOMOS -->
+    <section class="about" id="nosotros">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Nosotros</span>
+                <h2 class="section-title">Más que una agencia, un equipo creativo</h2>
+                <p class="section-subtitle">
+                    Somos tres personas con backgrounds muy diferentes que decidimos unir fuerzas. 
+                    Lo que nos une: la pasión por crear cosas que importen.
+                </p>
+            </div>
+            <div class="about-content-wrapper">
+                <div class="about-text">
+                    <h3>Entendemos que cada proyecto es único</h3>
+                    <p>
+                        No te vamos a vender un "paquete de 10 posts al mes" ni te vamos a prometer miles de seguidores. 
+                        Lo que sí hacemos es <span class="highlight">sentarnos contigo, escucharte, y construir algo que tenga sentido</span> para lo que quieres lograr.
+                    </p>
+                    <p>
+                        Venimos de industrias técnicas — alimentos, salud, finanzas — así que sabemos lo frustrante que es 
+                        trabajar con alguien que no entiende de qué hablas. Con nosotros no vas a tener que explicar todo desde cero.
+                    </p>
+                    <div class="about-pillars">
+                        <div class="pillar">
+                            <div class="pillar-icon">🎯</div>
+                            <div class="pillar-content">
+                                <h4>Sin fórmulas genéricas</h4>
+                                <p>Cada solución está pensada para tu contexto específico</p>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon">🤝</div>
+                            <div class="pillar-content">
+                                <h4>Comunicación directa</h4>
+                                <p>Hablas con quien trabaja en tu proyecto, sin intermediarios</p>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon">💡</div>
+                            <div class="pillar-content">
+                                <h4>Honestidad brutal</h4>
+                                <p>Te decimos qué sí funciona y qué no, sin rodeos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-card">
+                        <div class="about-card-content">
+                            <h4>Nuestras áreas de expertise</h4>
+                            <p>
+                                Además de producción audiovisual, contamos con experiencia profesional en:
+                            </p>
+                            <ul class="about-card-list">
+                                <li>Industria alimentaria y sistemas de calidad</li>
+                                <li>Operaciones y procesos de mejora continua</li>
+                                <li>Fisioterapia y psicología del deporte</li>
+                                <li>Educación y diseño instruccional</li>
+                                <li>Finanzas personales y empresariales</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="services" id="servicios">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Lo que hacemos</span>
+                <h2 class="section-title">Soluciones audiovisuales para tu vida</h2>
+            </div>
+            <div class="services-intro">
+                <p>
+                    No importa si eres un profesional que quiere crear su curso, una empresa que necesita capacitar 
+                    a su equipo, o una familia que quiere ayudar a su hijo a ser YouTuber. 
+                    <strong>Encontramos la manera de hacerlo realidad.</strong>
+                </p>
+            </div>
+            <div class="services-grid">
+                <!-- Producción audiovisual -->
+                <div class="service-card">
+                    <div class="service-icon">🎬</div>
+                    <h3>Producción audiovisual</h3>
+                    <p>
+                        Desde la idea hasta el video final. Grabamos, editamos y producimos contenido 
+                        que cuenta tu historia de forma profesional.
+                    </p>
+                    <ul class="service-features">
+                        <li>Videos corporativos e institucionales</li>
+                        <li>Contenido para redes sociales</li>
+                        <li>Videos de capacitación interna</li>
+                        <li>Jingles y música original</li>
+                    </ul>
+                </div>
+
+                <!-- eLearning -->
+                <div class="service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>Cursos y eLearning</h3>
+                    <p>
+                        Tu conocimiento merece una plataforma profesional. Diseñamos, grabamos y 
+                        montamos cursos completos con evaluaciones y certificados.
+                    </p>
+                    <ul class="service-features">
+                        <li>Diseño instruccional completo</li>
+                        <li>Grabación y edición profesional</li>
+                        <li>Montaje en plataforma LMS</li>
+                        <li>Sistema de evaluaciones y certificados</li>
+                    </ul>
+                </div>
+
+                <!-- Plataformas LMS -->
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Plataformas educativas</h3>
+                    <p>
+                        Tu propia academia online. Configuramos todo para que solo te preocupes 
+                        por enseñar mientras nosotros nos encargamos de la tecnología.
+                    </p>
+                    <ul class="service-features">
+                        <li>Configuración inicial completa</li>
+                        <li>Personalización con tu marca</li>
+                        <li>Integración de pagos</li>
+                        <li>Soporte y mantenimiento</li>
+                    </ul>
+                </div>
+
+                <!-- YouTubers -->
+                <div class="service-card">
+                    <div class="service-icon">▶️</div>
+                    <h3>Producción para YouTubers</h3>
+                    <p>
+                        ¿Tu hijo quiere ser YouTuber y no sabes cómo ayudarlo? 
+                        Nosotros nos encargamos de la producción profesional mientras tú mantienes el control.
+                    </p>
+                    <ul class="service-features">
+                        <li>Asesoría para definir el nicho</li>
+                        <li>Grabación profesional</li>
+                        <li>Edición de videos</li>
+                        <li>Optimización para YouTube</li>
+                    </ul>
+                </div>
+
+                <!-- Streaming -->
+                <div class="service-card">
+                    <div class="service-icon">📡</div>
+                    <h3>Streaming en vivo</h3>
+                    <p>
+                        Transmisiones profesionales para eventos, capacitaciones, lanzamientos 
+                        o lo que necesites. Múltiples cámaras, gráficos y producción en tiempo real.
+                    </p>
+                    <ul class="service-features">
+                        <li>Configuración técnica completa</li>
+                        <li>Múltiples cámaras y ángulos</li>
+                        <li>Gráficos personalizados</li>
+                        <li>Transmisión multi-plataforma</li>
+                    </ul>
+                </div>
+
+                <!-- Presencia digital -->
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Presencia digital</h3>
+                    <p>
+                        Ayudamos a que te encuentren las personas correctas. 
+                        No es sobre tener muchos seguidores, es sobre conectar con quien importa.
+                    </p>
+                    <ul class="service-features">
+                        <li>Estrategia de contenido</li>
+                        <li>Creación de contenido técnico</li>
+                        <li>Optimización de perfiles</li>
+                        <li>Páginas web y landing pages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOODOS -->
+    <section class="foodos" id="foodos">
+        <div class="foodos-container">
+            <div class="foodos-content">
+                <div class="foodos-text">
+                    <span class="foodos-badge">🍽️ Solución especializada</span>
+                    <h2>Conoce <span>FoodOS</span></h2>
+                    <p>
+                        El sistema que digitaliza la gestión de inocuidad alimentaria. 
+                        Olvídate de las carpetas llenas de papel — todo tu HACCP, POES y BPM en un solo lugar, 
+                        accesible desde cualquier dispositivo y listo para cualquier auditoría.
+                    </p>
+                    <div class="foodos-features">
+                        <div class="foodos-feature">
+                            <span class="foodos-feature-icon">📋</span>
+                            <span>Checklists digitales</span>
+                        </div>
+                        <div class="foodos-feature">
+                            <span class="foodos-feature-icon">📊</span>
+                            <span>Dashboards en tiempo real</span>
+                        </div>
+                        <div class="foodos-feature">
+                            <span class="foodos-feature-icon">🔔</span>
+                            <span>Alertas automáticas</span>
+                        </div>
+                        <div class="foodos-feature">
+                            <span class="foodos-feature-icon">📱</span>
+                            <span>App móvil incluida</span>
+                        </div>
+                        <div class="foodos-feature">
+                            <span class="foodos-feature-icon">📁</span>
+                            <span>Gestión documental</span>
+                        </div>
+                        <div class="foodos-feature">
+                            <span class="foodos-feature-icon">✅</span>
+                            <span>Listo para auditorías</span>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="btn btn-primary">
+                        Solicitar demo gratuita
+                    </a>
+                </div>
+                <div class="foodos-visual">
+                    <div class="foodos-mockup">
+                        <div class="mockup-header">
+                            <div class="mockup-dot"></div>
+                            <div class="mockup-dot"></div>
+                            <div class="mockup-dot"></div>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="mockup-item">
+                                <div class="mockup-icon">🌡️</div>
+                                <div class="mockup-text">
+                                    <h5>Control de Temperaturas</h5>
+                                    <p>Refrigeradores verificados</p>
+                                </div>
+                                <span class="mockup-status status-complete">Listo</span>
+                            </div>
+                            <div class="mockup-item">
+                                <div class="mockup-icon">🧼</div>
+                                <div class="mockup-text">
+                                    <h5>POES - Limpieza</h5>
+                                    <p>Área de producción</p>
+                                </div>
+                                <span class="mockup-status status-progress">En proceso</span>
+                            </div>
+                            <div class="mockup-item">
+                                <div class="mockup-icon">📝</div>
+                                <div class="mockup-text">
+                                    <h5>Auditoría Interna</h5>
+                                    <p>Programada mañana</p>
+                                </div>
+                                <span class="mockup-status status-pending">Pendiente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTE -->
+    <section class="client" id="cliente">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Caso de éxito</span>
+                <h2 class="section-title">Proyectos que nos enorgullecen</h2>
+            </div>
+            <div class="client-content">
+                <div class="client-card">
+                    <div class="client-quote">"</div>
+                    <p class="client-text">
+                        Dirección Digital entendió perfectamente lo que necesitábamos. Crearon una presencia digital 
+                        que realmente representa quiénes somos y conecta con nuestros pacientes. 
+                        Su enfoque técnico y su comprensión del mundo de la fisioterapia deportiva marcó toda la diferencia.
+                    </p>
+                    <div class="client-info">
+                        <div class="client-logo">🏥</div>
+                        <div class="client-name">
+                            <h4>Axon Therapy</h4>
+                            <p>Clínica de Fisioterapia Deportiva</p>
+                        </div>
+                    </div>
+                    <div class="client-cta">
+                        <a href="https://rochanovski.github.io/AXTlinkTree/" class="btn-client" target="_blank">
+                            Conoce Axon Therapy →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Preguntas frecuentes</span>
+                <h2 class="section-title">Lo que probablemente te estás preguntando</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Cómo sé si necesito sus servicios?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Si tienes una idea, un conocimiento o un proyecto que quieres compartir con el mundo pero no sabes 
+                            cómo hacerlo — probablemente podemos ayudarte. La mejor forma de saberlo es platicando. 
+                            Escríbenos por WhatsApp o agenda una llamada, sin compromiso.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Cuánto cuesta trabajar con ustedes?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Depende completamente de lo que necesites. No tenemos "paquetes" fijos porque cada proyecto es diferente. 
+                            Lo que sí te podemos decir es que siempre buscamos opciones que se ajusten a tu presupuesto. 
+                            Cuéntanos qué tienes en mente y te damos una cotización honesta.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Qué pasa si no me gusta el resultado?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Trabajamos contigo en cada paso del proceso, no te entregamos algo al final y ya. 
+                            Hay revisiones, ajustes y comunicación constante. Si algo no te convence, lo arreglamos. 
+                            Nuestro objetivo es que quedes satisfecho, no solo entregar y cobrar.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Cuánto tiempo toma un proyecto?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Un video sencillo puede estar listo en una semana. Un curso completo con plataforma puede tomar 
+                            de 4 a 8 semanas. Te damos un timeline claro desde el principio y te mantenemos informado del avance.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Qué es FoodOS y para quién es?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            FoodOS es una plataforma que creamos para empresas de alimentos que necesitan gestionar su sistema 
+                            de inocuidad (HACCP, POES, BPM) de forma digital. Si tienes una planta de alimentos, restaurante o 
+                            cualquier negocio de comida y estás cansado del papeleo, FoodOS es para ti. Agenda una demo y te lo mostramos.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿También dan consultoría?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sí, tenemos experiencia en industria alimentaria, sistemas de calidad, operaciones, 
+                            y psicología del deporte. Si necesitas orientación en estas áreas además de la parte audiovisual, 
+                            podemos ayudarte con eso también.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto">
+        <div class="contact-wrapper">
+            <div class="contact-intro">
+                <h2>¿Listo para darle dirección a tu proyecto?</h2>
+                <p>
+                    El primer paso es el más fácil: cuéntanos qué tienes en mente. 
+                    Sin compromiso, sin presión — solo una conversación para conocernos.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-options">
+                    <a href="https://wa.me/528110681138?text=Hola%2C%20estoy%20interesado%20en%20darle%20una%20direcci%C3%B3n%20digital%20a%20mi%20proyecto." class="contact-option whatsapp" target="_blank">
+                        <div class="contact-option-icon whatsapp">💬</div>
+                        <div class="contact-option-text">
+                            <h4>WhatsApp</h4>
+                            <p>La forma más rápida de contactarnos</p>
+                        </div>
+                    </a>
+                    <a href="mailto:direcciondigital.contacto@gmail.com" class="contact-option">
+                        <div class="contact-option-icon email">✉️</div>
+                        <div class="contact-option-text">
+                            <h4>Email</h4>
+                            <p>direcciondigital.contacto@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="tel:+528110681138" class="contact-option">
+                        <div class="contact-option-icon green">📞</div>
+                        <div class="contact-option-text">
+                            <h4>Teléfono</h4>
+                            <p>811 068 1138</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact-form-wrapper">
+                    <div class="contact-form-header">
+                        <h3>O déjanos tus datos</h3>
+                        <p>Te contactamos nosotros</p>
+                    </div>
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/direcciondigital.contacto@gmail.com" method="POST">
+                        <!-- FormSubmit configuration -->
+                        <input type="hidden" name="_subject" value="Nuevo contacto desde la web de Dirección Digital">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_autoresponse" value="Gracias por contactarnos, en breve algún asesor se comunicará con usted.">
+                        <input type="hidden" name="_next" value="">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="Tu WhatsApp">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">¿Qué te interesa?</label>
+                            <select id="servicio" name="servicio">
+                                <option value="">Selecciona una opción</option>
+                                <option value="Producción audiovisual">Producción audiovisual</option>
+                                <option value="Cursos / eLearning">Cursos / eLearning</option>
+                                <option value="Plataforma LMS">Plataforma LMS</option>
+                                <option value="Producción YouTube">Producción YouTube</option>
+                                <option value="Streaming">Streaming en vivo</option>
+                                <option value="Presencia digital">Presencia digital</option>
+                                <option value="FoodOS Demo">FoodOS - Demo</option>
+                                <option value="Consultoría">Consultoría especializada</option>
+                                <option value="Otro">Otro / No estoy seguro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Cuéntanos brevemente tu idea</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="¿Qué tienes en mente? ¿Qué te gustaría lograr?"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary">
+                                Enviar mensaje →
+                            </button>
+                        </div>
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        <div class="form-success-icon">✓</div>
+                        <h4>¡Mensaje enviado!</h4>
+                        <p>Gracias por contactarnos, en breve algún asesor se comunicará con usted.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="final-cta">
+        <div class="final-cta-content">
+            <h2>Tu proyecto merece cobrar vida</h2>
+            <p>El primer paso es una conversación. Escríbenos y veamos qué podemos crear juntos.</p>
+            <div class="final-cta-buttons">
+                <a href="https://wa.me/528110681138?text=Hola%2C%20estoy%20interesado%20en%20darle%20una%20direcci%C3%B3n%20digital%20a%20mi%20proyecto." class="btn btn-light" target="_blank">
+                    💬 Escríbenos por WhatsApp
+                </a>
+                <a href="#contacto" class="btn btn-outline">
+                    Dejar mis datos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <span class="logo-text">Dirección <span style="color: var(--verde-principal);">Digital</span></span>
+                    <p>Soluciones audiovisuales para tu proyecto</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#foodos">FoodOS</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Dirección Digital. Todos los derechos reservados.</p>
+                <p>Monterrey, Nuevo León, México</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form handling - set redirect URL to current page
+        const form = document.getElementById('contactForm');
+        const nextInput = form.querySelector('input[name="_next"]');
+        nextInput.value = window.location.href;
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .faq-item, .pillar').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
